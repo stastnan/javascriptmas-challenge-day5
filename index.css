@@ -1,0 +1,62 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+:root {
+  --jeopardy-blue: #060ce9;
+  --font-color-main: #fff;
+}
+
+.card {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  background: var(--jeopardy-blue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3em;
+  perspective: 1000px;
+  transition: transform 0.5s;
+}
+
+.card > .card-front,
+.card-back {
+  position: absolute;
+  color: var(--font-color-main);
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 4vw;
+  padding: 2rem;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+
+.card:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+/* without the rotate() is text showing up like in a mirror */
+.card:hover .card-back {
+  transform: rotateY(0deg);
+  transform: rotateY(0deg) scaleX(-1);
+}
